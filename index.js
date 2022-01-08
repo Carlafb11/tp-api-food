@@ -2,13 +2,14 @@
 const cardsContainer = document.getElementById("cards-container")
 
 
-const getArt = () => {
-  fetch("https://www.metmuseum.org/api/collection/collectionlisting/", {
+const getCharacter = () => {
+  fetch("https://rickandmortyapi.com/api/character/", {
 }) 
 .then((res) => res.json())
 .then((data) => {
   const newData = data.results
   fillCards(newData)
+  console.log(newData)
 })
 }
 
@@ -18,9 +19,8 @@ const fillCards = (data) => {
     htmlHolder += `
       <div id="cards-container">
         <div class="card">
-          <p>${item.title}</p>
+          <p>${item.name}</p>
           <img src="${item.image}"/>
-          <p>${item.description}</p>
         </div>
       </div>
     `
@@ -29,4 +29,4 @@ const fillCards = (data) => {
   })
 }
 
-getArt()
+getCharacter()
