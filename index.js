@@ -1,13 +1,9 @@
 // Selectores
 const cardsContainer = document.getElementById("cards-container")
 
-const getRecipes = () => {
-  fetch("https://tasty.p.rapidapi.com/recipes/list?size=10", {
-  "method": "GET",
-  "headers": {
-    "x-rapidapi-host": "tasty.p.rapidapi.com",
-    "x-rapidapi-key": "f82e3258edmsh10d1e49dfdbeb24p1024ebjsn5fe5947b5971"
-  }
+
+const getArt = () => {
+  fetch("https://www.metmuseum.org/api/collection/collectionlisting/", {
 }) 
 .then((res) => res.json())
 .then((data) => {
@@ -21,8 +17,11 @@ const fillCards = (data) => {
   data.map((item) => {
     htmlHolder += `
       <div id="cards-container">
-        <img height="100" src="${item.thumbnail_url}" />
-        <p>${item.name}</p>
+        <div class="card">
+          <p>${item.title}</p>
+          <img src="${item.image}"/>
+          <p>${item.description}</p>
+        </div>
       </div>
     `
     console.log(item)
@@ -30,4 +29,4 @@ const fillCards = (data) => {
   })
 }
 
-getRecipes()
+getArt()
