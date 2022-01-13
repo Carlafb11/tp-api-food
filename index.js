@@ -1,15 +1,19 @@
 // Selectores
 const cardsContainer = document.getElementById("cards-container")
+const prev = document.querySelector("#prev")
+const next = document.querySelector("#next")
+let currentPage = 1
+let lastPage = 0
 
 
-const getCharacter = () => {
-  fetch("https://rickandmortyapi.com/api/character/", {
-}) 
-.then((res) => res.json())
-.then((data) => {
-  const newData = data.results
-  fillCards(newData)
-  console.log(newData)
+const getInfo = () => {
+  fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`) 
+  .then((res) => res.json())
+  .then((data) => {
+    lastPage = data.info.pages
+    const newData = data.results
+    fillCards(newData)
+    console.log(newData)
 })
 }
 
@@ -29,4 +33,20 @@ const fillCards = (data) => {
   })
 }
 
-getCharacter()
+getInfo()
+
+next.onclick = () => {
+  currentPage++
+  if (currentPage === lastPage) {
+    next.disabled = true
+  }
+  getInfo()
+}
+
+prev.onclick = () => {
+  currentPage--
+  if (currentPage === 1) {
+    prev.disabled = true
+  } 
+  getInfo()
+}
