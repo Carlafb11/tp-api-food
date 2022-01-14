@@ -7,21 +7,25 @@ let currentPage = 1
 let lastPage = 0
 let itemsHomepage = []
 
-const getInfo = () => {
-  fetch(`https://rickandmortyapi.com/api/character?page=${currentPage}`) 
+const getInfo = (isHomePage, type) => {
+  fetch(`https://rickandmortyapi.com/api/${type}?page=${currentPage}`) 
   .then((res) => res.json())
   .then((data) => {
     lastPage = data.info.pages
     const newData = data.results
-    fillCards(newData)
-    itemsHomepage = newData.slice(0,4)
-    fillHomepageCards(itemsHomepage)
-
+    if (type === "character") {
+      fillCards(newData)
+      if (isHomePage) {
+        itemsHomepage = newData.slice(0,4)
+        fillHomepageCards(itemsHomepage)
+      }
+    } 
     seeMore.onclick = () => {
       fillCards(newData)
-
+      seeMore.style.display = "none"
+      prev.classList.toggle("hide-button")
+      next.classList.toggle("hide-button")
     }
-
 })
 }
 
@@ -56,7 +60,7 @@ const fillCards = (data) => {
   })
 }
 
-getInfo()
+getInfo(true, "character")
 
 prevValidation = () => {
   if (currentPage === 1) {
@@ -74,7 +78,7 @@ next.onclick = () => {
   if (currentPage > 1) {
     prev.disabled = false
   }
-  getInfo()
+  getInfo(false, "character")
 }
 
 prev.onclick = () => {
@@ -82,5 +86,5 @@ prev.onclick = () => {
   if (currentPage <= 1) {
     prev.disabled = true
   }
-  getInfo()
+  getInfo(false, "character")
 }
