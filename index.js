@@ -3,9 +3,11 @@ const cardsContainer = document.getElementById("cards-container")
 const prev = document.querySelector("#prev")
 const next = document.querySelector("#next")
 const seeMore = document.querySelector("#see-more")
+const textInput =document.querySelector("#text-input")
 let currentPage = 1
 let lastPage = 0
 let itemsHomepage = []
+
 
 const getInfo = (isHomePage, type) => {
   fetch(`https://rickandmortyapi.com/api/${type}?page=${currentPage}`) 
@@ -88,3 +90,22 @@ prev.onclick = () => {
   }
   getInfo(false, "character")
 }
+
+
+// Funcionalidad Barra busqueda 
+
+
+console.log(textInput)
+
+const textFilter = () => {
+  const textWrittenOnInput = textInput.value
+  console.log(textWrittenOnInput)
+  if (textWrittenOnInput) {
+    let filterCharacters = item.filter(item => {
+      // retornar la busqueda de los personajes, y normalizar 
+      // fillCards()
+    })
+  }
+}
+
+textInput.oninput = textFilter
