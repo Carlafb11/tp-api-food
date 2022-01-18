@@ -98,15 +98,13 @@ const searchBarButton = document.querySelector("#button-submit-search")
 
 searchForm.onsubmit = (e) => {
   e.preventDefault();
-  const textWrittenOnInput = textInput.value
+  const textWrittenOnInput = textInput.value.toLowerCase()
   console.log(textWrittenOnInput)
   const filterCharacters = itemsHomepage.filter( character => {
-   return  character.name.includes(textWrittenOnInput)
+   return  character.name.toLowerCase().includes(textWrittenOnInput)
   })
 
   console.log (filterCharacters)
-
-
 
   fillCards(filterCharacters)
 
