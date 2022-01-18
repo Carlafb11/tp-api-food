@@ -4,6 +4,7 @@ const prev = document.querySelector("#prev")
 const next = document.querySelector("#next")
 const seeMore = document.querySelector("#see-more")
 const textInput =document.querySelector("#text-input")
+const searchForm = document.querySelector("#search-form")
 let currentPage = 1
 let lastPage = 0
 let itemsHomepage = []
@@ -93,19 +94,20 @@ prev.onclick = () => {
 
 
 // Funcionalidad Barra busqueda 
+const searchBarButton = document.querySelector("#button-submit-search")
 
-
-console.log(textInput)
-
-const textFilter = () => {
+searchForm.onsubmit = (e) => {
+  e.preventDefault();
   const textWrittenOnInput = textInput.value
   console.log(textWrittenOnInput)
-  if (textWrittenOnInput) {
-    let filterCharacters = item.filter(item => {
-      // retornar la busqueda de los personajes, y normalizar 
-      // fillCards()
-    })
-  }
-}
+  const filterCharacters = itemsHomepage.filter( character => {
+   return  character.name.includes(textWrittenOnInput)
+  })
 
-textInput.oninput = textFilter
+  console.log (filterCharacters)
+
+
+
+  fillCards(filterCharacters)
+
+}
