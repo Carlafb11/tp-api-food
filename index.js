@@ -99,37 +99,23 @@ prev.onclick = () => {
 
 
 
-// Funcionalidad Barra busqueda 
+// Funcionalidad Barra busqueda y Status
 
-  const applyFilters = () => {
-    const textWrittenOnInput = textInput.value.toLowerCase()
-    console.log(textWrittenOnInput)
-    const filterCharacters = itemsHomepage.filter( character => {
-     return  character.name.toLowerCase().includes(textWrittenOnInput)
-    })
-    
-    
-    const statusSelectValue = statusSelect.value
-    const charactersFilteredByStatus = filterCharacters.filter((character)=> {
-      if (statusSelectValue === "all") {
-        return character
-      }
-      return character.status === statusSelectValue
-    })
 
-    return charactersFilteredByStatus
-    
+  const searchCharacters = (name, status) => {
+    fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}`)
+    .then(res => res.json())
+    .then(data => {
+      fillCards(data.results)
+    })
   }
- 
 
 
   
 
   searchForm.onsubmit = (e) => {
     e.preventDefault();
-    const filteredResults = applyFilters()
-    fillCards(filteredResults)
-    
+    searchCharacters(textInput.toLowerCase().value, statusSelect.value)
   }
 
 
