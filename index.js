@@ -5,6 +5,9 @@ const next = document.querySelector("#next")
 const seeMore = document.querySelector("#see-more")
 const textInput =document.querySelector("#text-input")
 const searchForm = document.querySelector("#search-form")
+const searchBarButton = document.querySelector("#button-submit-search")
+const statusSelect = document.querySelector("#select-search")
+
 let currentPage = 1
 let lastPage = 0
 let itemsHomepage = []
@@ -39,6 +42,7 @@ fillHomepageCards = (data) => {
       <div id="cards-container">
         <div class="card">
           <p>${item.name}</p>
+          <p>${item.status}</p>
           <img src="${item.image}"/>
         </div>
       </div>
@@ -55,6 +59,7 @@ const fillCards = (data) => {
       <div id="cards-container">
         <div class="card">
           <p>${item.name}</p>
+          <p>${item.status}</p>
           <img src="${item.image}"/>
         </div>
       </div>
@@ -93,19 +98,38 @@ prev.onclick = () => {
 }
 
 
+
 // Funcionalidad Barra busqueda 
-const searchBarButton = document.querySelector("#button-submit-search")
 
-searchForm.onsubmit = (e) => {
-  e.preventDefault();
-  const textWrittenOnInput = textInput.value.toLowerCase()
-  console.log(textWrittenOnInput)
-  const filterCharacters = itemsHomepage.filter( character => {
-   return  character.name.toLowerCase().includes(textWrittenOnInput)
-  })
+  const applyFilters = () => {
+    const textWrittenOnInput = textInput.value.toLowerCase()
+    console.log(textWrittenOnInput)
+    const filterCharacters = itemsHomepage.filter( character => {
+     return  character.name.toLowerCase().includes(textWrittenOnInput)
+    })
+    
+    
+    const statusSelectValue = statusSelect.value
+    const charactersFilteredByStatus = filterCharacters.filter((character)=> {
+      if (statusSelectValue === "all") {
+        return character
+      }
+      return character.status === statusSelectValue
+    })
 
-  console.log (filterCharacters)
+    return charactersFilteredByStatus
+    
+  }
+ 
 
-  fillCards(filterCharacters)
 
-}
+  
+
+  searchForm.onsubmit = (e) => {
+    e.preventDefault();
+    const filteredResults = applyFilters()
+    fillCards(filteredResults)
+    
+  }
+
+
