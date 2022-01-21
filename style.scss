@@ -37,20 +37,31 @@ header {
 .card {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin: 40px;
-  width: 200px;
+  margin: 1px;
+  height: 400px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+
   img {
-  max-width: 300px;
+  width: 100%;
   position: absolute;
+  transition: 1s;
   
   }
+  img:hover {
+    transform: scale(1.1);
+  }
+
   .layer-card {
     text-align: center;
     position: relative;
     color: $color_white;
     h3 {
       font-weight: bold;
+    }
+    p {
+      padding: 10px;
     }
   }
 }

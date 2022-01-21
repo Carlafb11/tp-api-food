@@ -36,11 +36,7 @@ const getInfo = (isHomePage, type) => {
     }
 
     
-    applyFilters(newData)
-    
 })
-
-
 
 }
 
@@ -73,9 +69,12 @@ const fillCards = (data) => {
     htmlHolder += `
       <div id="cards-container">
         <div class="card">
-          <p>${item.name}</p>
-          <p>${item.status}</p>
           <img src="${item.image}"/>
+            <div class="layer-card">
+              <h3>${item.name}</h3>
+              <p>${item.status}</p>
+              
+            </div> 
         </div>
       </div>
     `
