@@ -13,6 +13,8 @@ let lastPage = 0
 let itemsHomepage = []
 
 
+
+
 const getInfo = (isHomePage, type) => {
   fetch(`https://rickandmortyapi.com/api/${type}?page=${currentPage}`) 
   .then((res) => res.json())
@@ -22,7 +24,7 @@ const getInfo = (isHomePage, type) => {
     if (type === "character") {
       fillCards(newData)
       if (isHomePage) {
-        itemsHomepage = newData.slice(0,4)
+        itemsHomepage = newData.slice(0,8)
         fillHomepageCards(itemsHomepage)
       }
     } 
@@ -32,8 +34,18 @@ const getInfo = (isHomePage, type) => {
       prev.classList.toggle("hide-button")
       next.classList.toggle("hide-button")
     }
+
+    
+    applyFilters(newData)
+    
 })
+
+
+
 }
+
+
+
 
 fillHomepageCards = (data) => {
   let htmlHolder = ""
@@ -41,9 +53,12 @@ fillHomepageCards = (data) => {
     htmlHolder += `
       <div id="cards-container">
         <div class="card">
-          <p>${item.name}</p>
-          <p>${item.status}</p>
           <img src="${item.image}"/>
+          <div class="layer-card">
+            <h3>${item.name}</h3>
+            <p>${item.status}</p>
+             
+          </div> 
         </div>
       </div>
     `
@@ -101,35 +116,33 @@ prev.onclick = () => {
 
 // Funcionalidad Barra busqueda 
 
-  const applyFilters = () => {
-    const textWrittenOnInput = textInput.value.toLowerCase()
-    console.log(textWrittenOnInput)
-    const filterCharacters = itemsHomepage.filter( character => {
-     return  character.name.toLowerCase().includes(textWrittenOnInput)
-    })
-    
-    
-    const statusSelectValue = statusSelect.value
-    const charactersFilteredByStatus = filterCharacters.filter((character)=> {
-      if (statusSelectValue === "all") {
-        return character
-      }
-      return character.status === statusSelectValue
-    })
 
-    return charactersFilteredByStatus
-    
-  }
- 
-
-
+const applyFilters = (data) => {
+  const textWrittenOnInput = textInput.value.toLowerCase()
+  console.log(textWrittenOnInput)
+  const filterCharacters = data.filter( character => {
+   return  character.name.toLowerCase().includes(textWrittenOnInput)
+  })
   
+  
+  const statusSelectValue = statusSelect.value
+  const charactersFilteredByStatus = filterCharacters.filter((character)=> {
+    if (statusSelectValue === "all") {
+      return character
+    }
+    return character.status === statusSelectValue
+  })
 
-  searchForm.onsubmit = (e) => {
-    e.preventDefault();
-    const filteredResults = applyFilters()
-    fillCards(filteredResults)
-    
-  }
+  return charactersFilteredByStatus
+  
+}
+searchForm.onsubmit = (e) => {
+  e.preventDefault();
+  const filteredResults = applyFilters()
+  fillCards(filteredResults)
+  
+}
+
+
 
 
