@@ -144,13 +144,36 @@ const cardsContainer = document.querySelector("#cards-container")
 
 
 const cardOnClick = (item) => {
-  
-  
-  console.log(item)
+    fetch (`https://rickandmortyapi.com/api/character/${item}`)
+    .then (res => res.json())
+    .then(data => {
+      createInfoCard(data)
+    })
+}
+const createInfoCard = (data) => {
   cardsContainer.style.display = "none"
   const overlay = document.getElementById("overlay")
   modalCharacterInfo.classList.remove("hidden")
   overlay.classList.remove("hidden")
+  modalInformationCharacter = document.querySelector(".modal-information")
+modalInformationCharacter. innerHTML = `
+  <div class="modal-image">
+  <img src = ${data.image}>
+  </div>
+  <div class="detail-character">
+  <div class="name">
+    <h2>${data.name}</h2>
+  </div> 
+  <div class="character-details">
+    <p>${data.gender}</p> 
+    <div class="status-container">
+      <p>${data.status}</p>
+    </div>
+  </div>     
+
+  </div>
+`
+
 }
 
 // cerrar infocard
