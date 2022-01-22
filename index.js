@@ -3,6 +3,9 @@ const textInput =document.querySelector("#text-input")
 const searchForm = document.querySelector("#search-form")
 const searchBarButton = document.querySelector("#button-submit-search")
 const statusSelect = document.querySelector("#select-search")
+const modalCharacterInfo = document.querySelector(".modal-character-container")
+const closeModalButton = document.getElementById("close-modal")
+
 
 let currentPage = 1
 let lastPage = 0
@@ -142,10 +145,10 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
     prevButtons.classList.add("disabled-cta")
   }
 }
-
+const cardsContainer = document.querySelector("#cards-container")
 // Funcionalidad Barra busqueda y Status
   const searchCharacters = (name, status) => {
-    const cardsContainer = document.querySelector("#cards-container")
+    
     console.log(cardsContainer)
     fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}`)
     .then(res => res.json())
@@ -163,7 +166,42 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
 
 // Funcion abrir info card
 const cardOnClick = (item) => {
-  console.log(item)
-  
+  console.log (item)
+    fetch (`https://rickandmortyapi.com/api/character/${item}`)
+    .then (res => res.json())
+    .then(data => {
+      createInfoCard(data)
+    })
+}
+const createInfoCard = (data) => {
+  cardsContainer.style.display = "none"
+  const overlay = document.getElementById("overlay")
+  modalCharacterInfo.classList.remove("hidden")
+  overlay.classList.remove("hidden")
+  modalInformationCharacter = document.querySelector(".modal-information")
+modalInformationCharacter. innerHTML = `
+  <div class="modal-image">
+  <img src = ${data.image}>
+  </div>
+  <div class="detail-character">
+  <div class="name">
+    <h2>${data.name}</h2>
+  </div> 
+  <div class="character-details">
+    <p>${data.gender}</p> 
+    <div class="status-container">
+      <p>${data.status}</p>
+    </div>
+  </div>     
+  </div>
+`
 
+}
+
+// cerrar infocard
+
+closeModalButton.onclick =() => {
+overlay.classList.add("hidden")
+cardsContainer.style.display ="block"
+modalCharacterInfo.classList.add("hidden")
 }

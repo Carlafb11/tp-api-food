@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap");
+.hidden {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -128,6 +132,39 @@ h3 {
   border: none;
   background-color: #3db2c9;
   color: #FFFFFF;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.562);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.modal-character-container {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #4C4B63;
+  z-index: 2;
+}
+.modal-character-container .modal-information {
+  margin: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.modal-character-container .modal-information .modal-image {
+  box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+}
+.modal-character-container .modal-information .detail-character {
+  margin-left: 20px;
+}
+.modal-character-container .modal-information .detail-character .status-container {
+  border: solid green 2px;
 }
 
 .buttons-wrapper {

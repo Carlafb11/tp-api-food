@@ -4,7 +4,12 @@
 
 //mixins
 $color_white: #FFFFFF;
+$modal_text_color: #4C4B63;
 $main_color: #3db2c9;
+
+.hidden {
+  display: none;
+}
 
 @mixin flexbox {
   display: flex;
@@ -177,6 +182,43 @@ h3 {
   }
 }
 
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.562);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+
+.modal-character-container {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top:50%;
+  left: 50%;
+  color: $modal_text_color;
+  z-index: 2;
+    .modal-information {
+      margin: 20px;
+      display: flex;
+      justify-content: space-around;
+
+      .modal-image {
+      box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+      }
+
+      .detail-character {
+        margin-left: 20px;
+        .status-container {
+          
+          border: solid green 2px;
+        }
+      }
+    }
+  
+}
 
 //See more CTA
 .buttons-wrapper {
