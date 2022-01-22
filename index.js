@@ -38,6 +38,7 @@ ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillH
 
 
 
+
 const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomepageParam) => {
   let htmlHolder = ""
   data.map((item) => {
