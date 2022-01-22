@@ -21,6 +21,7 @@ const getInfo = (isHomePage, type) => {
     fillCards(newData, type, wrapperName, fillHomepageCards)
     ifIsHomepageFillCards(isHomePage, newData, type, wrapperName, fillHomepageCards)
     seeMoreButton(newData, type, wrapperName, fillHomepageCards)
+    
     // prevAndNextButtons(newData, type, wrapperName, fillHomepageCards)
 })
 
@@ -33,32 +34,39 @@ ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillH
   }
 }
 
+
+
 const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
   let htmlHolder = ""
   data.map((item) => {
     htmlHolder += `
       <div id="${wrapperNameParam}">
-        <div class="card">
-        <img src="${item.image}"/>
-        <div class="layer-card">
-          <h3>${item.name}</h3>
+        <div class="card" id="${type}-${item.id}" data-id="${item.id}" onclick={cardOnClick(${item.id})}>
+          <img src="${item.image}"/>
+            <div class="layer-card">
+              <h3>${item.name}</h3>
+            </div>
         </div>
       </div>
     `
     fillHomepageCardsParam.innerHTML = htmlHolder
   })
   htmlHolder += `
-    <button id="see-more-${type}">See more</button>
+    <button id="see-more-${type}" class="see-more-button">See more</button>
   `
   fillHomepageCardsParam.innerHTML = htmlHolder
+  
 }
+
+
+
 
 getInfo(true, "character")
 getInfo(true, "location")
 getInfo(true, "episode")
 
 const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
-  console.log(fillHomepageCardsParam)
+  // console.log(fillHomepageCardsParam)
   const seeMoreContainer = document.querySelector(`#see-more-${type}`)
   seeMoreContainer.onclick = () => {
     fillCards(data, type, wrapperNameParam, fillHomepageCardsParam)
@@ -99,10 +107,10 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
 /* <img src="${item.image}"/> */
 
 
-
+const cardsContainer = document.querySelector("#cards-container")
 // Funcionalidad Barra busqueda y Status
   const searchCharacters = (name, status) => {
-    const cardsContainer = document.querySelector("#cards-container")
+    
     fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}`)
     .then(res => res.json())
     .then(data => {
@@ -117,4 +125,13 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
     searchCharacters(textInputValue.toLowerCase(), statusSelect.value)
   }
 
-  // image para location 
+// Funcion abrir info card
+
+const cards = document.querySelectorAll(".card")
+// console.log(cards)
+
+const cardOnClick = (item) => {
+  console.log(item)
+  
+
+}
