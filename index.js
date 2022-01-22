@@ -39,7 +39,9 @@ const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
     htmlHolder += `
       <div id="${wrapperNameParam}">
         <div class="card">
-          <p>${item.name}</p>
+        <img src="${item.image}"/>
+        <div class="layer-card">
+          <h3>${item.name}</h3>
         </div>
       </div>
     `
@@ -114,3 +116,5 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
     e.preventDefault();
     searchCharacters(textInputValue.toLowerCase(), statusSelect.value)
   }
+
+  // image para location 

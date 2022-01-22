@@ -11,7 +11,6 @@ $color_white: #FFFFFF;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 }
 
 @mixin transition-card-info {
@@ -33,13 +32,11 @@ body {
   font-family: "Montserrat";
 }
 
-header {
-  background-color: pink;
-}
 
 #cards-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   padding: 10px;
   @include flexbox;
 }
@@ -52,14 +49,16 @@ header {
   margin: 1px;
   height: 400px;
   width: 300px;
+  background-color: rgb(70, 223, 83);
   position: relative;
   overflow: hidden;
-  
+
 
   img {
   width: 100%;
   position: absolute;
   transition: 1s;
+  background-size: cover;
   
   }
   img:hover {
@@ -90,6 +89,30 @@ header {
 .card:hover {
   h3, p {
     @include transition-card-info;
+  }
+}
+
+#homepage-character {
+  @include flexbox;
+}
+
+#homepage-location {
+  @include flexbox;
+  .card {
+    
+   img {
+     content: url(https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134);
+   }
+    
+  }
+}
+#homepage-episode {
+  @include flexbox;
+  .card {
+   img {
+     content: url(https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg);
+   }
+    
   }
 }
 
