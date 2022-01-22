@@ -1,90 +1,89 @@
-// Selectores
-const cardsContainer = document.getElementById("cards-container")
-const prev = document.querySelector("#prev")
-const next = document.querySelector("#next")
-const seeMore = document.querySelector("#see-more")
 let currentPage = 1
 let lastPage = 0
 let itemsHomepage = []
 
 const getInfo = (isHomePage, type) => {
+  const wrapperName = `homepage-${type}`
+  const fillHomepageCards = document.getElementById(wrapperName)
   fetch(`https://rickandmortyapi.com/api/${type}?page=${currentPage}`) 
   .then((res) => res.json())
   .then((data) => {
     lastPage = data.info.pages
     const newData = data.results
-    if (type === "character") {
-      fillCards(newData)
-      if (isHomePage) {
-        itemsHomepage = newData.slice(0,4)
-        fillHomepageCards(itemsHomepage)
-      }
-    } 
-    seeMore.onclick = () => {
-      fillCards(newData)
-      seeMore.style.display = "none"
-      prev.classList.toggle("hide-button")
-      next.classList.toggle("hide-button")
-    }
+
+    fillCards(newData, type, wrapperName, fillHomepageCards)
+    ifIsHomepageFillCards(isHomePage, newData, type, wrapperName, fillHomepageCards)
+    seeMoreButton(newData, type, wrapperName, fillHomepageCards)
+    prevAndNextButtons(newData, type, wrapperName, fillHomepageCards)
 })
 }
 
-fillHomepageCards = (data) => {
-  let htmlHolder = ""
-  data.map((item) => {
-    htmlHolder += `
-      <div id="cards-container">
-        <div class="card">
-          <p>${item.name}</p>
-          <img src="${item.image}"/>
-        </div>
-      </div>
-    `
-    cardsContainer.innerHTML = htmlHolder
-  })
+ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillHomepageCardsParam) => {
+  if (isHomepageParam) {
+    itemsHomepage = newData.slice(0,4)
+    fillCards(itemsHomepage, type, wrapperNameParam, fillHomepageCardsParam)
+  }
 }
 
-
-const fillCards = (data) => {
+const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
   let htmlHolder = ""
   data.map((item) => {
     htmlHolder += `
-      <div id="cards-container">
+      <div id="${wrapperNameParam}">
         <div class="card">
           <p>${item.name}</p>
-          <img src="${item.image}"/>
         </div>
       </div>
     `
-    cardsContainer.innerHTML = htmlHolder
+    fillHomepageCardsParam.innerHTML = htmlHolder
   })
+  htmlHolder += `
+    <button id="see-more-${type}">See more</button>
+  `
+  fillHomepageCardsParam.innerHTML = htmlHolder
 }
 
 getInfo(true, "character")
+getInfo(true, "location")
+getInfo(true, "episode")
 
-prevValidation = () => {
-  if (currentPage === 1) {
-    prev.disabled = true
+const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
+  console.log(fillHomepageCardsParam)
+  const seeMoreContainer = document.querySelector(`#see-more-${type}`)
+  seeMoreContainer.onclick = () => {
+    fillCards(data, type, wrapperNameParam, fillHomepageCardsParam)
+    seeMoreContainer.style.display = "none"
+    // prevButtons.classList.toggle("hide-button")
+    // nextButtons.classList.toggle("hide-button")
   }
 }
 
-prevValidation()
+const prevAndNextButtons = (data, type, wrapperNameParam, fillHomepageCards) => {
+  const prevButtons = document.querySelector(`#prev-${type}`)
+  const nextButtons = document.querySelector(`#next-${type}`)
 
-next.onclick = () => {
+  nextButtons.onclick = () => {
   currentPage++
   if (currentPage === lastPage) {
-    next.disabled = true
+    nextButtons.disabled = true
   }
   if (currentPage > 1) {
-    prev.disabled = false
+    prevButtons.disabled = false
   }
   getInfo(false, "character")
 }
 
-prev.onclick = () => {
+prevButtons.onclick = () => {
   currentPage--
   if (currentPage <= 1) {
-    prev.disabled = true
+    prevButtons.disabled = true
   }
   getInfo(false, "character")
 }
+  if (currentPage === 1) {
+    prevButtons.disabled = true
+  }
+}
+
+
+/* <img src="${item.image}"/> */
