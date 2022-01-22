@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap");
+.hidden {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,10 +13,7 @@ body {
 }
 
 #cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  padding: 10px;
+  padding: 0 10% 0 10%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,14 +26,10 @@ body {
   height: 400px;
   width: 300px;
   background-color: #46df53;
-  position: relative;
   overflow: hidden;
 }
 .card img {
-  width: 100%;
-  position: absolute;
   transition: 1s;
-  background-size: cover;
 }
 .card img:hover {
   transform: scale(1.1);
@@ -95,7 +92,6 @@ h3 {
   background-image: url("./assets/hero.png");
   height: 400px;
   background-repeat: no-repeat;
-  background-color: black;
   background-size: 100% auto;
   background-position: center;
 }
@@ -138,10 +134,6 @@ h3 {
   color: #FFFFFF;
 }
 
-.hidden {
-  display: none;
-}
-
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -173,6 +165,31 @@ h3 {
 }
 .modal-character-container .modal-information .detail-character .status-container {
   border: solid green 2px;
+}
+
+.buttons-wrapper {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+.buttons-wrapper button {
+  height: 30px;
+  margin-left: 10px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3db2c9;
+  color: #FFFFFF;
+}
+.buttons-wrapper button:hover {
+  background-color: #1f7485;
+  cursor: pointer;
+}
+
+.disabled-cta {
+  background-color: #6d898f !important;
+  cursor: not-allowed !important;
 }
 
 /*# sourceMappingURL=style.css.map */
