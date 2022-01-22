@@ -9,23 +9,22 @@
 </head>
 <body>
 
-  <div>
+  <div id="hero">
     <form id="search-form">
       <div id="search-text-input">
         <input 
               type="text" 
               id="text-input" 
-              placeholder="Search"
-              >
+              placeholder="Search character">
 
       </div>
 
-      <div>
-        <label>Status</label>
+      <div class="select-header">
         <select id ="select-search"> 
-          <option value ="Alive">alive</option>
-          <option value ="Dead">dead</option>
-          <option value ="all">all</option>
+          <option disabled>Status</option>
+          <option value="Alive">Alive</option>
+          <option value="Dead">Dead</option>
+          <option value selected="all">All</option>
         </select>
         
       </div>

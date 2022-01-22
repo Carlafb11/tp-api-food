@@ -6,6 +6,7 @@
 
 
 $color_white: #FFFFFF;
+$main_color: #3db2c9;
 
 @mixin flexbox {
   display: flex;
@@ -103,4 +104,50 @@ h3 {
   display: none;
 }
 
+// HERO STYLES
+#hero {
+  background-image: url("./assets/hero.png");
+  height: 400px;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 100% auto;
+  background-position: center;
+}
 
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  #search-text-input {
+    padding-right: 20px;
+  }
+  #search-text-input input {
+    width: 400px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: "Montserrat";
+    font-size: 12px;
+  }
+  .select-header {
+    margin: 20px;
+    #select-search {
+      height: 30px;
+      margin-left: 10px;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: none;
+    }
+  }
+  #button-submit-search {
+    height: 30px;
+    margin-left: 10px;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: $main_color;
+    color: $color_white;
+  }
+}

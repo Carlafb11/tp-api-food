@@ -21,7 +21,7 @@ const getInfo = (isHomePage, type) => {
     fillCards(newData, type, wrapperName, fillHomepageCards)
     ifIsHomepageFillCards(isHomePage, newData, type, wrapperName, fillHomepageCards)
     seeMoreButton(newData, type, wrapperName, fillHomepageCards)
-    // prevAndNextButtons(newData, type, wrapperName, fillHomepageCards)
+    prevAndNextButtons(newData, type, wrapperName, fillHomepageCards)
 })
 
 }
@@ -59,39 +59,40 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
   console.log(fillHomepageCardsParam)
   const seeMoreContainer = document.querySelector(`#see-more-${type}`)
   seeMoreContainer.onclick = () => {
+    console.log(fillHomepageCardsParam)
     fillCards(data, type, wrapperNameParam, fillHomepageCardsParam)
     seeMoreContainer.style.display = "none"
-    // prevButtons.classList.toggle("hide-button")
-    // nextButtons.classList.toggle("hide-button")
+    prevButtons.classList.toggle("hide-button")
+    nextButtons.classList.toggle("hide-button")
   }
 }
 
-// const prevAndNextButtons = (data, type, wrapperNameParam, fillHomepageCards) => {
-//   const prevButtons = document.querySelector(`#prev-${type}`)
-//   const nextButtons = document.querySelector(`#next-${type}`)
+const prevAndNextButtons = (data, type, wrapperNameParam, fillHomepageCards) => {
+  const prevButtons = document.getElementById(`prev-${type}`)
+  const nextButtons = document.getElementById(`next-${type}`)
 
-//   nextButtons.onclick = () => {
-//   currentPage++
-//   if (currentPage === lastPage) {
-//     nextButtons.disabled = true
-//   }
-//   if (currentPage > 1) {
-//     prevButtons.disabled = false
-//   }
-//   getInfo(false, "character")
-// }
+  nextButtons.onclick = () => {
+  currentPage++
+  if (currentPage === lastPage) {
+    nextButtons.disabled = true
+  }
+  if (currentPage > 1) {
+    prevButtons.disabled = false
+  }
+  getInfo(false, "character")
+}
 
-// prevButtons.onclick = () => {
-//   currentPage--
-//   if (currentPage <= 1) {
-//     prevButtons.disabled = true
-//   }
-//   getInfo(false, "character")
-// }
-//   if (currentPage === 1) {
-//     prevButtons.disabled = true
-//   }
-// }
+prevButtons.onclick = () => {
+  currentPage--
+  if (currentPage <= 1) {
+    prevButtons.disabled = true
+  }
+  getInfo(false, "character")
+}
+  if (currentPage === 1) {
+    prevButtons.disabled = true
+  }
+}
 
 
 /* <img src="${item.image}"/> */

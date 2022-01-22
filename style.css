@@ -69,4 +69,51 @@ h3 {
   display: none;
 }
 
+#hero {
+  background-image: url("./assets/hero.png");
+  height: 400px;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#search-form #search-text-input {
+  padding-right: 20px;
+}
+#search-form #search-text-input input {
+  width: 400px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-family: "Montserrat";
+  font-size: 12px;
+}
+#search-form .select-header {
+  margin: 20px;
+}
+#search-form .select-header #select-search {
+  height: 30px;
+  margin-left: 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+}
+#search-form #button-submit-search {
+  height: 30px;
+  margin-left: 10px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3db2c9;
+  color: #FFFFFF;
+}
+
 /*# sourceMappingURL=style.css.map */
