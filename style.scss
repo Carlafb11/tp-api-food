@@ -1,19 +1,106 @@
+// Font styles
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap');
+
+//mixins
+
+
+$color_white: #FFFFFF;
+
+@mixin flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin transition-card-info {
+  font-weight: bold;
+    opacity: 1;
+}
+
+@mixin null-opacity {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat";
+}
+
+header {
+  background-color: pink;
+}
+
 #cards-container {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
+  @include flexbox;
 }
+
+
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  width: 200px;
+  margin: 1px;
+  height: 400px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  
+
   img {
-    max-width: 200px;
+  width: 100%;
+  position: absolute;
+  transition: 1s;
+  
   }
+  img:hover {
+    transform: scale(1.1);
+    
+  }
+
+
+  .layer-card {
+    text-align: center;
+    position: relative;
+    
+    color: $color_white;
+
+    &:hover {
+      background-color: rgba(54, 54, 54, 0.397);
+
+    }
+    
+    p {
+      @include null-opacity;
+      padding: 10px;
+      
+    }
+  }
+}
+
+.card:hover {
+  h3, p {
+    @include transition-card-info;
+  }
+}
+
+h3 {
+  color: $color_white;
+  @include null-opacity;
+  margin: 10px;
 }
 
 .hide-button {
   display: none;
 }
+
+

@@ -1,17 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat";
+}
+
+header {
+  background-color: pink;
+}
+
 #cards-container {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  width: 200px;
+  margin: 1px;
+  height: 400px;
+  width: 300px;
+  position: relative;
+  overflow: hidden;
 }
 .card img {
-  max-width: 200px;
+  width: 100%;
+  position: absolute;
+  transition: 1s;
+}
+.card img:hover {
+  transform: scale(1.1);
+}
+.card .layer-card {
+  text-align: center;
+  position: relative;
+  color: #FFFFFF;
+}
+.card .layer-card:hover {
+  background-color: rgba(54, 54, 54, 0.397);
+}
+.card .layer-card p {
+  opacity: 0;
+  transition: opacity 1s;
+  padding: 10px;
+}
+
+.card:hover h3, .card:hover p {
+  font-weight: bold;
+  opacity: 1;
+}
+
+h3 {
+  color: #FFFFFF;
+  opacity: 0;
+  transition: opacity 1s;
+  margin: 10px;
 }
 
 .hide-button {
