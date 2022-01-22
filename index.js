@@ -170,7 +170,6 @@ modalInformationCharacter. innerHTML = `
       <p>${data.status}</p>
     </div>
   </div>     
-
   </div>
 `
 
@@ -184,4 +183,3 @@ overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
 modalCharacterInfo.classList.add("hidden")
 }
-
