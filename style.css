@@ -44,11 +44,25 @@ header {
   position: relative;
   color: #FFFFFF;
 }
-.card .layer-card h3 {
-  font-weight: bold;
+.card .layer-card:hover {
+  background-color: rgba(54, 54, 54, 0.397);
 }
 .card .layer-card p {
+  opacity: 0;
+  transition: opacity 1s;
   padding: 10px;
+}
+
+.card:hover h3, .card:hover p {
+  font-weight: bold;
+  opacity: 1;
+}
+
+h3 {
+  color: #FFFFFF;
+  opacity: 0;
+  transition: opacity 1s;
+  margin: 10px;
 }
 
 .hide-button {

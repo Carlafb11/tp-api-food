@@ -14,6 +14,16 @@ $color_white: #FFFFFF;
   align-items: center;
 }
 
+@mixin transition-card-info {
+  font-weight: bold;
+    opacity: 1;
+}
+
+@mixin null-opacity {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -34,6 +44,8 @@ header {
   @include flexbox;
 }
 
+
+
 .card {
   display: flex;
   flex-direction: column;
@@ -42,6 +54,7 @@ header {
   width: 300px;
   position: relative;
   overflow: hidden;
+  
 
   img {
   width: 100%;
@@ -51,21 +64,43 @@ header {
   }
   img:hover {
     transform: scale(1.1);
+    
   }
+
 
   .layer-card {
     text-align: center;
     position: relative;
+    
     color: $color_white;
-    h3 {
-      font-weight: bold;
+
+    &:hover {
+      background-color: rgba(54, 54, 54, 0.397);
+
     }
+    
     p {
+      @include null-opacity;
       padding: 10px;
+      
     }
   }
+}
+
+.card:hover {
+  h3, p {
+    @include transition-card-info;
+  }
+}
+
+h3 {
+  color: $color_white;
+  @include null-opacity;
+  margin: 10px;
 }
 
 .hide-button {
   display: none;
 }
+
+
