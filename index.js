@@ -36,9 +36,6 @@ ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillH
   }
 }
 
-
-
-
 const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomepageParam) => {
   let htmlHolder = ""
   data.map((item) => {
@@ -56,15 +53,13 @@ const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomep
   })
   if (isHomepageParam) {
     htmlHolder += `
-      <button id="see-more-${type}">See more</button>
+      <div class="buttons-wrapper">
+        <button id="see-more-${type}">See more</button>
+      </div>
     ` 
   }
   fillHomepageCardsParam.innerHTML = htmlHolder
-  
 }
-
-
-
 
 getInfo(true, "character")
 getInfo(true, "location")
@@ -73,23 +68,50 @@ getInfo(true, "episode")
 const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
   const seeMoreContainer = document.querySelector(`#see-more-${type}`)
   seeMoreContainer.onclick = () => {
+    const heroImage = document.querySelector("#hero")
+    const homepageCharacter = document.querySelector("#homepage-character")
+    const homepageLocation = document.querySelector("#homepage-location")
+    const homepageEpisode = document.querySelector("#homepage-episode")
+    const returnHomepageButton = document.querySelector("#return-homepage")
+
+    returnHomepageButton.onclick = () => {
+      location.reload()
+      return false
+    }
+
     fillCards(data, type, wrapperNameParam, fillHomepageCardsParam, false)
     prevAndNextButtons(type, wrapperNameParam)
-    // const prevButtons = document.querySelector(`prev-${type}`)
-    // const nextButtons = document.querySelector(`next-${type}`)
-    // prevButtons.classList.toggle("hide-button")
-    // nextButtons.classList.toggle("hide-button")
+    switch(type) {
+      case "character":
+        homepageLocation.style.display = "none"  
+        homepageEpisode.style.display = "none"
+        returnHomepageButton.classList.toggle("hide-button")
+        break
+      case "location":
+        homepageCharacter.style.display = "none"  
+        homepageEpisode.style.display = "none"
+        heroImage.style.display = "none"
+        returnHomepageButton.classList.toggle("hide-button")
+      break
+      case "episode":
+        homepageCharacter.style.display = "none"  
+        homepageLocation.style.display = "none"
+        hero.style.display = "none"
+        returnHomepageButton.classList.toggle("hide-button")
+      break
+    }
   }
 }
 
 const prevAndNextButtons = (type, wrapperNameParam) => {
   const wrapper = document.querySelector(`#${wrapperNameParam}`)
   const prevNextWrapper = document.createElement('div')
-  let prevButtons, nextButtons;
-  prevNextWrapper.setAttribute("id", "prev-next-wrapper");
+  let prevButtons, nextButtons
+  prevNextWrapper.setAttribute("id", "prev-next-wrapper")
+  prevNextWrapper.setAttribute("class", "buttons-wrapper")
   prevNextWrapper.innerHTML = `
-    <button id="prev-${type}">Previous</button>
-    <button id="next-${type}">Next</button>
+      <button id="prev-${type}">Previous</button>
+      <button id="next-${type}">Next</button>
   `
   wrapper.appendChild(prevNextWrapper)
   prevButtons = document.getElementById(`prev-${type}`)
@@ -99,6 +121,7 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
     currentPage++
     if (currentPage === lastPage) {
       nextButtons.disabled = true
+      nextButtons.classList.add("disabled-cta")
     }
     if (currentPage > 1) {
       prevButtons.disabled = false
@@ -116,6 +139,7 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
 
   if (currentPage === 1) {
     prevButtons.disabled = true
+    prevButtons.classList.add("disabled-cta")
   }
 }
 
@@ -138,8 +162,6 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
   }
 
 // Funcion abrir info card
-
-
 const cardOnClick = (item) => {
   console.log(item)
   

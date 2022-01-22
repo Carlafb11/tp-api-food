@@ -3,8 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap');
 
 //mixins
-
-
 $color_white: #FFFFFF;
 $main_color: #3db2c9;
 
@@ -16,12 +14,31 @@ $main_color: #3db2c9;
 
 @mixin transition-card-info {
   font-weight: bold;
-    opacity: 1;
+  opacity: 1;
 }
 
 @mixin null-opacity {
   opacity: 0;
   transition: opacity 1s;
+}
+
+@mixin main-cta {
+  height: 30px;
+  margin-left: 10px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: $main_color;
+  color: $color_white;
+}
+
+@mixin main-cta-hover {
+  background-color:rgb(31, 116, 133);
+}
+ 
+@mixin main-cta-disabled {
+  background-color:rgb(109, 137, 143) !important;
+  cursor: not-allowed !important;
 }
 
 * {
@@ -35,11 +52,8 @@ body {
 
 
 #cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  padding: 10px;
-  @include flexbox;
+  padding: 0 10% 0 10%;
+  @include flexbox; 
 }
 
 
@@ -51,16 +65,11 @@ body {
   height: 400px;
   width: 300px;
   background-color: rgb(70, 223, 83);
-  position: relative;
   overflow: hidden;
 
-
   img {
-  width: 100%;
-  position: absolute;
+
   transition: 1s;
-  background-size: cover;
-  
   }
   img:hover {
     transform: scale(1.1);
@@ -132,7 +141,6 @@ h3 {
   background-image: url("./assets/hero.png");
   height: 400px;
   background-repeat: no-repeat;
-  background-color: black;
   background-size: 100% auto;
   background-position: center;
 }
@@ -165,12 +173,26 @@ h3 {
     }
   }
   #button-submit-search {
-    height: 30px;
-    margin-left: 10px;
-    padding: 0 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: $main_color;
-    color: $color_white;
+    @include main-cta()
   }
+}
+
+
+//See more CTA
+.buttons-wrapper {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  button {
+    @include main-cta();
+    &:hover {
+      @include main-cta-hover();
+      cursor: pointer;
+    }
+  }
+}
+
+.disabled-cta {
+  @include main-cta-disabled();
 }
