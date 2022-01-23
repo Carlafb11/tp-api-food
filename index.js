@@ -249,6 +249,7 @@ const createInfoCard = (data) => {
 closeModalButton.onclick =() => {
 overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
+
 modalCharacterInfo.classList.add("hidden")
 }
 
