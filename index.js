@@ -5,11 +5,21 @@ const searchBarButton = document.querySelector("#button-submit-search")
 const statusSelect = document.querySelector("#select-search")
 const modalCharacterInfo = document.querySelector(".modal-character-container")
 const closeModalButton = document.getElementById("close-modal")
+const returnHomepageButton = document.querySelector("#return-homepage")
+const cardsContainer = document.querySelector("#cards-container")
+const overlay = document.getElementById("overlay")
 
 
 let currentPage = 1
 let lastPage = 0
+let searchPage = 1
+let searchLastPage = 0
 let itemsHomepage = []
+
+returnHomepageButton.onclick = () => {
+  location.reload()
+  return false
+}
 
 
 const getInfo = (isHomePage, type) => {
@@ -45,7 +55,9 @@ const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomep
     htmlHolder += `
       <div id="${wrapperNameParam}">
         <div class="card" id="${type}-${item.id}" data-id="${item.id}" onclick={cardOnClick(${item.id})}>
-          <img src="${item.image}"/>
+          <div class="card-image-wrapper">
+            <img src="${item.image}"/>
+          </div>
             <div class="layer-card">
               <h3>${item.name}</h3>
             </div>
@@ -74,12 +86,7 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
     const homepageCharacter = document.querySelector("#homepage-character")
     const homepageLocation = document.querySelector("#homepage-location")
     const homepageEpisode = document.querySelector("#homepage-episode")
-    const returnHomepageButton = document.querySelector("#return-homepage")
-
-    returnHomepageButton.onclick = () => {
-      location.reload()
-      return false
-    }
+    
 
     fillCards(data, type, wrapperNameParam, fillHomepageCardsParam, false)
     prevAndNextButtons(type, wrapperNameParam)
@@ -105,9 +112,10 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
   }
 }
 
-const prevAndNextButtons = (type, wrapperNameParam) => {
+const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
   const wrapper = document.querySelector(`#${wrapperNameParam}`)
   const prevNextWrapper = document.createElement('div')
+
   let prevButtons, nextButtons
   prevNextWrapper.setAttribute("id", "prev-next-wrapper")
   prevNextWrapper.setAttribute("class", "buttons-wrapper")
@@ -119,51 +127,78 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
   prevButtons = document.getElementById(`prev-${type}`)
   nextButtons = document.getElementById(`next-${type}`)
 
+  if ((isSearch && searchPage === searchLastPage) || (currentPage === lastPage)) {
+    nextButtons.disabled = true
+    nextButtons.classList.add("disabled-cta")
+  }
+
   nextButtons.onclick = () => {
-    currentPage++
-    if (currentPage === lastPage) {
-      nextButtons.disabled = true
-      nextButtons.classList.add("disabled-cta")
+    if (isSearch) {
+      searchPage++
+      if (searchPage > 1) {
+        prevButtons.disabled = false
+      }
+      searchCharacters(name, status, searchPage)
+    } else {
+      currentPage++
+      if (currentPage > 1) {
+        prevButtons.disabled = false
+      }
+      getInfo(false, type)
     }
-    if (currentPage > 1) {
-      prevButtons.disabled = false
-    }
-    getInfo(false, type)
   }
 
   prevButtons.onclick = () => {
-    currentPage--
-    if (currentPage <= 1) {
-      prevButtons.disabled = true
+    if (isSearch) {
+      searchPage--
+      console.log(searchPage)
+      if (searchPage <= 1) {
+        prevButtons.disabled = true
+      }
+      searchCharacters(name, status, searchPage)
+    } else {
+      currentPage--
+      if (currentPage <= 1) {
+        prevButtons.disabled = true
+      }
+      getInfo(false, type)
     }
-    getInfo(false, type)
   }
 
-  if (currentPage === 1) {
-    prevButtons.disabled = true
-    prevButtons.classList.add("disabled-cta")
+  if (isSearch) {
+    if (searchPage === 1) {
+      prevButtons.disabled = true
+      prevButtons.classList.add("disabled-cta")
+    }
+  } else {
+    if (currentPage === 1) {
+      prevButtons.disabled = true
+      prevButtons.classList.add("disabled-cta")
+    }
   }
 }
-const cardsContainer = document.querySelector("#cards-container")
-// Funcionalidad Barra busqueda y Status
-  const searchCharacters = (name, status) => {
-    const cardsContainerResults = document.querySelector("#cards-container-results")
-    const cardsContainer = document.querySelector("#cards-container")
 
-    fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}`)
+// Funcionalidad Barra busqueda y Status
+  const searchCharacters = (name, status, page) => {
+    const cardsContainerResults = document.querySelector("#cards-container-results")
+
+    fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}&page=${page}`)
     .then(res => res.json())
     .then(data => {
+      searchLastPage = data.info.pages
       fillCards(data.results, "character", "cards-container-results", cardsContainerResults)
       cardsContainer.style.display = "none"
-      prevAndNextButtons()
+      if (searchLastPage > 1) {
+        prevAndNextButtons("character", "cards-container-results", true, name, status)
+      }
     })
   }
-
 
   searchForm.onsubmit = (e) => {
     const textInputValue= textInput.value
     e.preventDefault();
     searchCharacters(textInputValue.toLowerCase(), statusSelect.value)
+    returnHomepageButton.classList.toggle("hide-button")
   }
 
 // OPEN INFO CARD FUNCTION
@@ -176,8 +211,10 @@ const cardOnClick = (item, type) => {
     })
 }
 const createInfoCard = (data) => {
+
+
   cardsContainer.style.display = "none"
-  const overlay = document.getElementById("overlay")
+  
   modalCharacterInfo.classList.remove("hidden")
   overlay.classList.remove("hidden")
   modalInformationCharacter = document.querySelector(".modal-information")
@@ -205,7 +242,6 @@ modalInformationCharacter. innerHTML = `
 
 
 // CLOSE INFOCARD FUNCTION
-
 closeModalButton.onclick =() => {
 overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
