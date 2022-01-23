@@ -170,7 +170,7 @@ h3 {
   border-radius: 10px;
   position: absolute;
   top: 30%;
-  left: 40%;
+  left: 50%;
   padding: 40px;
   width: 500px;
   color: #4C4B63;
@@ -262,7 +262,8 @@ h3 {
 }
 @media (max-width: 399px) {
   .card {
-    background-color: red;
+    width: 220px;
+    height: 320px;
   }
 
   #hero {
@@ -277,12 +278,21 @@ h3 {
   #search-form {
     position: relative;
   }
-  #search-form #search-text-input {
+  #search-form #search-text-input input {
     position: absolute;
     top: 30%;
-    right: 90%;
-    width: 5px;
-    padding: 0;
+    right: 10%;
+    width: 300px;
+  }
+
+  .modal-character-container {
+    width: 200px;
+    background-color: #FFFFFF;
+    top: 20%;
+    left: 15%;
+  }
+  .modal-character-container .modal-information .modal-image img {
+    width: 200px;
   }
 }
 
