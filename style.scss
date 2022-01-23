@@ -95,6 +95,7 @@ body {
     content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
     height: 300px;
     object-fit: cover;
+   
   
   }
 }
@@ -106,6 +107,7 @@ body {
     height: 300px;
     object-fit: cover;
     object-position: bottom;
+  
   }
 }
 
@@ -173,26 +175,43 @@ h3 {
 
 .modal-character-container {
   background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   position: absolute;
-  top:50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
+  padding: 40px;
   color: $modal_text_color;
   z-index: 2;
     .modal-information {
-      margin: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
-
-      .modal-image {
-      box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
-      }
+      .modal-image { 
+        box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+        img{
+          border-radius: 10px;
+        }
+        }
 
       .detail-character {
-        margin-left: 20px;
-        .status-container {
-          
-          border: solid green 2px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .name {
+          align-self: center;
+          margin: 20px;
         }
+        .character-details {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .status-container {
+            padding-left: 50px;
+            padding-right: 50px;
+            border: solid green 2px;
+          }
+        }
+        
       }
     }
   

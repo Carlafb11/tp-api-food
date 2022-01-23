@@ -50,6 +50,7 @@ body {
   content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
   height: 300px;
   object-fit: cover;
+  cursor: not-allowed;
 }
 
 #homepage-episode {
@@ -62,6 +63,7 @@ body {
   height: 300px;
   object-fit: cover;
   object-position: bottom;
+  cursor: not-allowed;
 }
 
 h3 {
@@ -132,24 +134,42 @@ h3 {
 
 .modal-character-container {
   background-color: white;
+  border-radius: 10px;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
+  padding: 40px;
   color: #4C4B63;
   z-index: 2;
 }
 .modal-character-container .modal-information {
-  margin: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 .modal-character-container .modal-information .modal-image {
   box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
 }
-.modal-character-container .modal-information .detail-character {
-  margin-left: 20px;
+.modal-character-container .modal-information .modal-image img {
+  border-radius: 10px;
 }
-.modal-character-container .modal-information .detail-character .status-container {
+.modal-character-container .modal-information .detail-character {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.modal-character-container .modal-information .detail-character .name {
+  align-self: center;
+  margin: 20px;
+}
+.modal-character-container .modal-information .detail-character .character-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-character-container .modal-information .detail-character .character-details .status-container {
+  padding-left: 50px;
+  padding-right: 50px;
   border: solid green 2px;
 }
 
