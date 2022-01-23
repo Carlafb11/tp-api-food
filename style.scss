@@ -23,6 +23,15 @@ nav {
   
 }
 
+footer {
+  height: 50px;
+  background-color: $main_color;
+  color: $color_white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @mixin flexbox {
   display: flex;
@@ -57,6 +66,11 @@ nav {
 @mixin main-cta-disabled {
   background-color:rgb(109, 137, 143) !important;
   cursor: not-allowed !important;
+}
+// >>   Final Mixins styles 
+
+@mixin drop-shadow {
+  filter: drop-shadow(10px 10px 15px #d6d6d6);
 }
 // >>   Final Mixins styles 
 
@@ -98,7 +112,7 @@ body {
   background-color: $color_white;
   overflow: hidden;
   border-radius: 10px;
-  filter: drop-shadow(10px 10px 15px #d6d6d6);
+  @include drop-shadow();
 
   .card-image-wrapper {
     display: inline-block;
@@ -211,6 +225,10 @@ h3 {
     z-index: 1;
 }
 
+#close-modal {
+  font-size: 25px;
+  cursor: pointer;
+}
 
 .modal-character-container {
   background-color: rgb(255, 255, 255);
@@ -218,40 +236,58 @@ h3 {
   position: absolute;
   top: 30%;
   left: 50%;
-  padding: 40px;
-  width: 500px;
+  padding: 40px 60px;
   color: $modal_text_color;
-  z-index: 2;
+  z-index:  2;
     .modal-information {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       .modal-image { 
-        box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+        @include drop-shadow();
         img{
           border-radius: 10px;
         }
         }
-
-      .detail-character {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        .name {
-          align-self: center;
-          margin: 20px;
+        .name h2 {
+          text-align: center;
+          padding: 25px 0;
         }
-        .character-details {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          .status-container {
-            padding-left: 50px;
-            padding-right: 50px;
-            border: solid green 2px;
+      .status-container {
+        padding-top: 20px;
+        .status-details {
+          padding-top: 10px;
+          text-align: center;
+          span {
+            font-weight: bold;
           }
-        }
-        
+          .specie-detail {
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+            .human {
+              border: 1px solid blue;
+              color: blue;
+              border-radius: 5px;
+              padding: 5px 10px;
+              margin-top: 5px;
+            }
+            .alien {
+              border: 1px solid orange;
+              color: orange;
+              border-radius: 5px;
+              padding: 5px 10px;
+              margin-top: 5px;
+            }
+            .other {
+              border: 1px solid purple;
+              color: purple;
+              border-radius: 5px;
+              padding: 5px 10px;
+              margin-top: 5px;
+            }
+          }
+        } 
       }
     }
   
