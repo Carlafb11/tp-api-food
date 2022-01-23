@@ -219,6 +219,7 @@ h3 {
   top: 30%;
   left: 40%;
   padding: 40px;
+  width: 500px;
   color: $modal_text_color;
   z-index: 2;
     .modal-information {
@@ -277,6 +278,59 @@ h3 {
 
 // >>  MEDIA QUERY
 
-// @media (max-width: 600px) {
-//   .
-// }
+@media (min-device-width: 400px) and (max-width: 900px) {
+
+  .card {
+    width: 270px;
+    height:350px;
+  }
+  .modal-character-container {
+    width: 300px;
+    background-color: $color_white;
+    top: 20%;
+    left: 20%;
+  }
+  
+
+  #hero {
+    height: 500px;
+    padding: 0;
+    background-position: stretch;
+  }
+
+  #search-form {
+    align-self: center;
+    #search-text-input input {
+      flex-direction: column;
+      background-color: $color_white;
+      width: 240px;
+    
+    }
+  }
+}
+
+@media (max-width: 399px){
+  .card {
+    background-color: red;
+  }
+  #hero {
+    padding-top: 100px;
+    background-image: url(./assets/hero.png);
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}
+
+  #search-form {
+    position: relative;
+    #search-text-input {
+      position: absolute;
+      top: 30%;
+      right: 90%;
+      width: 5px;
+      padding: 0;
+    }
+  }
+
+}

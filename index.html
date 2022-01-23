@@ -19,27 +19,29 @@
 
   <div id="hero">
     <form id="search-form">
-      <div id="search-text-input">
-        <input 
-              type="text" 
-              id="text-input" 
-              placeholder="Search character">
+        <div id="search-text-input">
+          <input 
+                type="text" 
+                id="text-input" 
+                placeholder="Search character">
+  
+        </div>
+  
+        <div class="select-header">
+          <select id ="select-search"> 
+            <option disabled>Status</option>
+            <option value="Alive">Alive</option>
+            <option value="Dead">Dead</option>
+            <option value ="Unknow">Unknow</option>
+            <option value selected="all">All</option>
+          </select>
+          
+        </div>
+        <div>
+          <button id="button-submit-search">Search</button>
+        </div>
 
-      </div>
-
-      <div class="select-header">
-        <select id ="select-search"> 
-          <option disabled>Status</option>
-          <option value="Alive">Alive</option>
-          <option value="Dead">Dead</option>
-          <option value ="Unknow">Unknow</option>
-          <option value selected="all">All</option>
-        </select>
-        
-      </div>
-      <div>
-        <button id="button-submit-search">Search</button>
-      </div>
+     
     </form>
   </div>
 
