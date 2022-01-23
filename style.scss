@@ -2,11 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap');
 
-//mixins
+
+// >>   mixins
 $color_white: #FFFFFF;
 $modal_text_color: #4C4B63;
 $main_color: #3db2c9;
 $text_color: #686868;
+
 
 nav {
   height: 80px;
@@ -21,9 +23,6 @@ nav {
   
 }
 
-.hidden {
-  display: none;
-}
 
 @mixin flexbox {
   display: flex;
@@ -59,11 +58,17 @@ nav {
   background-color:rgb(109, 137, 143) !important;
   cursor: not-allowed !important;
 }
+// >>   Final Mixins styles 
 
 * {
   margin: 0;
   padding: 0;
 }
+
+.hidden {
+  display: none;
+}
+
 
 body {
   font-family: "Montserrat";
@@ -106,6 +111,7 @@ body {
   }
 
   img:hover {
+    transform: scale(1.5);
     -webkit-transform:scale(1.5); /* Safari and Chrome */
     -moz-transform:scale(1.5); /* Firefox */
     -ms-transform:scale(1.5); /* IE 9 */
@@ -124,6 +130,7 @@ body {
     content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
     height: 300px;
     object-fit: cover;
+   
   
   }
 }
@@ -135,6 +142,7 @@ body {
     height: 300px;
     object-fit: cover;
     object-position: bottom;
+  
   }
 }
 
@@ -190,11 +198,14 @@ h3 {
   }
 }
 
+
+// OVERLAY & MODAL 
+
 .overlay {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.562);
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     z-index: 1;
@@ -203,26 +214,43 @@ h3 {
 
 .modal-character-container {
   background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   position: absolute;
-  top:50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
+  padding: 40px;
   color: $modal_text_color;
   z-index: 2;
     .modal-information {
-      margin: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
-
-      .modal-image {
-      box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
-      }
+      .modal-image { 
+        box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+        img{
+          border-radius: 10px;
+        }
+        }
 
       .detail-character {
-        margin-left: 20px;
-        .status-container {
-          
-          border: solid green 2px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .name {
+          align-self: center;
+          margin: 20px;
         }
+        .character-details {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .status-container {
+            padding-left: 50px;
+            padding-right: 50px;
+            border: solid green 2px;
+          }
+        }
+        
       }
     }
   
@@ -246,3 +274,9 @@ h3 {
 .disabled-cta {
   @include main-cta-disabled();
 }
+
+// >>  MEDIA QUERY
+
+// @media (max-width: 600px) {
+//   .
+// }

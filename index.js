@@ -7,6 +7,7 @@ const modalCharacterInfo = document.querySelector(".modal-character-container")
 const closeModalButton = document.getElementById("close-modal")
 const returnHomepageButton = document.querySelector("#return-homepage")
 const cardsContainer = document.querySelector("#cards-container")
+const overlay = document.getElementById("overlay")
 
 
 let currentPage = 1
@@ -200,8 +201,8 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
     returnHomepageButton.classList.toggle("hide-button")
   }
 
-// Funcion abrir info card
-const cardOnClick = (item) => {
+// OPEN INFO CARD FUNCTION
+const cardOnClick = (item, type) => {
   console.log (item)
     fetch (`https://rickandmortyapi.com/api/character/${item}`)
     .then (res => res.json())
@@ -213,31 +214,34 @@ const createInfoCard = (data) => {
 
 
   cardsContainer.style.display = "none"
-  const overlay = document.getElementById("overlay")
+  
   modalCharacterInfo.classList.remove("hidden")
   overlay.classList.remove("hidden")
   modalInformationCharacter = document.querySelector(".modal-information")
 modalInformationCharacter. innerHTML = `
   <div class="modal-image">
-  <img src = ${data.image}>
+    <img src = ${data.image}>
   </div>
+
   <div class="detail-character">
-  <div class="name">
-    <h2>${data.name}</h2>
-  </div> 
-  <div class="character-details">
-    <p>${data.gender}</p> 
-    <div class="status-container">
-      <p>${data.status}</p>
-    </div>
-  </div>     
+    <div class="name">
+      <h2>${data.name}</h2>
+    </div> 
+    <div class="character-details">
+        <p>${data.gender}</p> 
+        <div class="status-container">
+          <h3>${data.status}</h3>
+          <h3>${data.species}</h3>
+        </div>
+    </div>     
   </div>
 `
 
 }
 
-// cerrar infocard
 
+
+// CLOSE INFOCARD FUNCTION
 closeModalButton.onclick =() => {
 overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
