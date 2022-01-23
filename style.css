@@ -11,6 +11,16 @@ nav .logo img {
   padding: 20px;
 }
 
+footer {
+  height: 50px;
+  background-color: #3db2c9;
+  color: #FFFFFF;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -165,13 +175,18 @@ h3 {
   z-index: 1;
 }
 
+#close-modal {
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .modal-character-container {
   background-color: white;
   border-radius: 10px;
   position: absolute;
   top: 30%;
   left: 40%;
-  padding: 40px;
+  padding: 40px 60px;
   color: #4C4B63;
   z-index: 2;
 }
@@ -181,29 +196,50 @@ h3 {
   justify-content: space-around;
 }
 .modal-character-container .modal-information .modal-image {
-  box-shadow: 12px 12px 28px -3px rgba(143, 143, 143, 0.72);
+  filter: drop-shadow(10px 10px 15px #d6d6d6);
 }
 .modal-character-container .modal-information .modal-image img {
   border-radius: 10px;
 }
-.modal-character-container .modal-information .detail-character {
+.modal-character-container .modal-information .name h2 {
+  text-align: center;
+  padding: 25px 0;
+}
+.modal-character-container .modal-information .status-container {
+  padding-top: 20px;
+}
+.modal-character-container .modal-information .status-container .status-details {
+  padding-top: 10px;
+  text-align: center;
+}
+.modal-character-container .modal-information .status-container .status-details span {
+  font-weight: bold;
+}
+.modal-character-container .modal-information .status-container .status-details .specie-detail {
+  width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
 }
-.modal-character-container .modal-information .detail-character .name {
-  align-self: center;
-  margin: 20px;
+.modal-character-container .modal-information .status-container .status-details .specie-detail .human {
+  border: 1px solid blue;
+  color: blue;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
 }
-.modal-character-container .modal-information .detail-character .character-details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.modal-character-container .modal-information .status-container .status-details .specie-detail .alien {
+  border: 1px solid orange;
+  color: orange;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
 }
-.modal-character-container .modal-information .detail-character .character-details .status-container {
-  padding-left: 50px;
-  padding-right: 50px;
-  border: solid green 2px;
+.modal-character-container .modal-information .status-container .status-details .specie-detail .other {
+  border: 1px solid purple;
+  color: purple;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
 }
 
 .buttons-wrapper {
@@ -229,12 +265,6 @@ h3 {
 .disabled-cta {
   background-color: #6d898f !important;
   cursor: not-allowed !important;
-}
-
-@media (min-device-width: 400px) and (max-width: 700px) {
-  .modal-character-container {
-    background-color: red;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

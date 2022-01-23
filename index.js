@@ -8,6 +8,7 @@ const closeModalButton = document.getElementById("close-modal")
 const returnHomepageButton = document.querySelector("#return-homepage")
 const cardsContainer = document.querySelector("#cards-container")
 const overlay = document.getElementById("overlay")
+const footerSection = document.querySelector("footer-section")
 
 
 let currentPage = 1
@@ -151,7 +152,6 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
   prevButtons.onclick = () => {
     if (isSearch) {
       searchPage--
-      console.log(searchPage)
       if (searchPage <= 1) {
         prevButtons.disabled = true
       }
@@ -208,32 +208,37 @@ const cardOnClick = (item, type) => {
     .then (res => res.json())
     .then(data => {
       createInfoCard(data)
+      modalStyling(data)
     })
 }
 const createInfoCard = (data) => {
-
-
   cardsContainer.style.display = "none"
   
   modalCharacterInfo.classList.remove("hidden")
   overlay.classList.remove("hidden")
   modalInformationCharacter = document.querySelector(".modal-information")
-modalInformationCharacter. innerHTML = `
+  modalInformationCharacter. innerHTML = `
+  <div class="name">
+    <h2>${data.name}</h2>
+  </div> 
   <div class="modal-image">
     <img src = ${data.image}>
   </div>
-
-  <div class="detail-character">
-    <div class="name">
-      <h2>${data.name}</h2>
-    </div> 
-    <div class="character-details">
-        <p>${data.gender}</p> 
-        <div class="status-container">
-          <h3>${data.status}</h3>
-          <h3>${data.species}</h3>
-        </div>
-    </div>     
+  <div class="status-container">
+    <div class="status-details">
+      <p><span>Gender:</span></p> 
+      <p id="gender-modal-card">${data.gender}</p>
+    </div>
+    <div class="status-details">
+      <p><span>Status:</span></p>
+      <p id="status-modal-card">${data.status}</p>
+    </div>
+    <div class="status-details">
+      <p><span>Specie:</span></p>
+      <div class="specie-detail">
+        <p id="specie-modal-card">${data.species}</p>
+      </div>
+    </div>
   </div>
 `
 
@@ -242,8 +247,43 @@ modalInformationCharacter. innerHTML = `
 
 
 // CLOSE INFOCARD FUNCTION
-closeModalButton.onclick =() => {
+closeModalButton.onclick = () => {
 overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
 modalCharacterInfo.classList.add("hidden")
+}
+
+// Validacion para modal! :)
+const modalStyling = (data) => {
+  const gender = document.querySelector("#gender-modal-card")
+  const status = document.querySelector("#status-modal-card")
+  const specie = document.querySelector("#specie-modal-card")
+
+  //gender
+  gender.innerHTML = `
+    <i class="fas fa-${data.gender === "unknown" ? "question" : data.gender.toLowerCase()}"></i>
+    ${data.gender}
+  `
+  //status
+  if (data.status === "Alive") {
+    status.style.color = "green"
+  }
+  else if (data.status === "Dead") {
+    status.style.color = "red"
+  }
+  else if (data.status === "unknown") {
+    status.style.color = "lightseagreen"
+  }
+  console.log(data)
+  //specie
+  if (data.species === "Human") {
+    specie.classList.add("human")
+  }
+  else if (data.species === "Alien") {
+    specie.classList.add("alien")
+  }
+  else {
+    specie.classList.add("other")
+  }
+
 }
