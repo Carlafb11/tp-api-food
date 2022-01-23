@@ -251,8 +251,8 @@ const createInfoCard = (data, isHomepage) => {
     modalCharacterInfo.classList.add("hidden")
     footerSection.classList.remove("hidden")
   }
-
 }
+
 
 // Validacion para modal! :)
 const modalStyling = (data) => {
