@@ -19,27 +19,29 @@
 
   <div id="hero">
     <form id="search-form">
-      <div id="search-text-input">
-        <input 
-              type="text" 
-              id="text-input" 
-              placeholder="Search character">
+        <div id="search-text-input">
+          <input 
+                type="text" 
+                id="text-input" 
+                placeholder="Search character">
+  
+        </div>
+  
+        <div class="select-header">
+          <select id ="select-search"> 
+            <option disabled>Status</option>
+            <option value="Alive">Alive</option>
+            <option value="Dead">Dead</option>
+            <option value ="Unknow">Unknow</option>
+            <option value selected="all">All</option>
+          </select>
+          
+        </div>
+        <div>
+          <button id="button-submit-search">Search</button>
+        </div>
 
-      </div>
-
-      <div class="select-header">
-        <select id ="select-search"> 
-          <option disabled>Status</option>
-          <option value="Alive">Alive</option>
-          <option value="Dead">Dead</option>
-          <option value ="Unknow">Unknow</option>
-          <option value selected="all">All</option>
-        </select>
-        
-      </div>
-      <div>
-        <button id="button-submit-search">Search</button>
-      </div>
+     
     </form>
   </div>
 
@@ -62,21 +64,19 @@
     
   </div>
 
-  <div class="buttons-wrapper">
-    <button id="return-homepage" class="hide-button">Return to homepage</button>
-  </div>
-  
-  <div class="overlay hidden" id="overlay">
-    <section id="modal-character-container" class="modal-character-container hidden">
-      <i id="close-modal" class="fas fa-times"></i>
-      <div class="modal-information">
-       
-  
-        <!-- este maquetado se agrega desde js -->
-      </div>
+    <div class="buttons-wrapper">
+      <button id="return-homepage" class="hide-button">Return to homepage</button>
+    </div>
+    
+    <div class="overlay hidden" id="overlay"> </div>
+      <section id="modal-character-container" class="modal-character-container hidden">
+        <i id="close-modal" class="fas fa-times"></i>
+        <div class="modal-information">
+          
+        </div>
 
-  </section>
-  </div>
+       </section>
+  
 
   <footer id="footer-section">
     <p>Made with ❤️ by Rebe and Carla</p>

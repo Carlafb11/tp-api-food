@@ -213,7 +213,6 @@ const cardOnClick = (item, type) => {
 }
 const createInfoCard = (data) => {
   cardsContainer.style.display = "none"
-  
   modalCharacterInfo.classList.remove("hidden")
   overlay.classList.remove("hidden")
   modalInformationCharacter = document.querySelector(".modal-information")
@@ -247,7 +246,7 @@ const createInfoCard = (data) => {
 
 
 // CLOSE INFOCARD FUNCTION
-closeModalButton.onclick = () => {
+closeModalButton.onclick =() => {
 overlay.classList.add("hidden")
 cardsContainer.style.display ="block"
 modalCharacterInfo.classList.add("hidden")
