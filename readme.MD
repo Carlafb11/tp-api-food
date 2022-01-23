@@ -1,6 +1,6 @@
 # Español
 
-## Link al proyecto: 
+## Link al proyecto: https://carlafb11.github.io/tp-api-rick-and-morty/
 
 ##Este proyecto en el que utilizamos una API para obtener el contenido (la API de Rick and Morty). 
 
