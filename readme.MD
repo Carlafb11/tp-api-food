@@ -8,7 +8,7 @@
 ##We performed this page with Rick and Morty API which allow us to obtain all information for our project.
 
 
-### Tecnologías / Technologies:**
+### Tecnologías / Technologies:
 JavaScript
 fetch
 HTML5
