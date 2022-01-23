@@ -2,15 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap');
 
-//mixins
+// >>   mixins
 $color_white: #FFFFFF;
 $modal_text_color: #4C4B63;
 $main_color: #3db2c9;
 $text_color: #686868;
 
-.hidden {
-  display: none;
-}
+
 
 @mixin flexbox {
   display: flex;
@@ -46,10 +44,16 @@ $text_color: #686868;
   background-color:rgb(109, 137, 143) !important;
   cursor: not-allowed !important;
 }
+// >>   Final Mixins styles 
 
 * {
   margin: 0;
   padding: 0;
+}
+
+
+.hidden {
+  display: none;
 }
 
 body {
@@ -67,7 +71,7 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 30px;
   height: 360px;
   width: 300px;
   background-color: $color_white;
@@ -162,6 +166,9 @@ h3 {
   }
 }
 
+
+// OVERLAY & MODAL 
+
 .overlay {
     width: 100vw;
     height: 100vh;
@@ -234,4 +241,10 @@ h3 {
 
 .disabled-cta {
   @include main-cta-disabled();
+}
+
+// >>  MEDIA QUERY
+
+@media (max-width: 600px) {
+  .
 }

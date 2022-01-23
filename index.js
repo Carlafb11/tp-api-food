@@ -166,7 +166,7 @@ const cardsContainer = document.querySelector("#cards-container")
     searchCharacters(textInputValue.toLowerCase(), statusSelect.value)
   }
 
-// Funcion abrir info card
+// OPEN INFO CARD FUNCTION
 const cardOnClick = (item, type) => {
   console.log (item)
     fetch (`https://rickandmortyapi.com/api/character/${item}`)
@@ -202,7 +202,9 @@ modalInformationCharacter. innerHTML = `
 
 }
 
-// cerrar infocard
+
+
+// CLOSE INFOCARD FUNCTION
 
 closeModalButton.onclick =() => {
 overlay.classList.add("hidden")
