@@ -6,6 +6,7 @@
 $color_white: #FFFFFF;
 $modal_text_color: #4C4B63;
 $main_color: #3db2c9;
+$text_color: #686868;
 
 .hidden {
   display: none;
@@ -56,9 +57,9 @@ body {
 }
 
 
-#cards-container {
-  padding: 0 10% 0 10%;
-  @include flexbox; 
+#cards-container-results {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -66,44 +67,20 @@ body {
 .card {
   display: flex;
   flex-direction: column;
-  margin: 1px;
-  height: 400px;
+  margin: 10px;
+  height: 360px;
   width: 300px;
-  background-color: rgb(70, 223, 83);
+  background-color: $color_white;
   overflow: hidden;
+  border-radius: 10px;
+  filter: drop-shadow(10px 10px 15px #d6d6d6);
 
   img {
-
   transition: 1s;
   }
+
   img:hover {
     transform: scale(1.1);
-    
-  }
-
-
-  .layer-card {
-    text-align: center;
-    position: relative;
-    
-    color: $color_white;
-
-    &:hover {
-      background-color: rgba(54, 54, 54, 0.397);
-
-    }
-    
-    p {
-      @include null-opacity;
-      padding: 10px;
-      
-    }
-  }
-}
-
-.card:hover {
-  h3, p {
-    @include transition-card-info;
   }
 }
 
@@ -111,30 +88,31 @@ body {
   @include flexbox;
 }
 
+
 #homepage-location {
   @include flexbox;
-  .card {
-    
-   img {
-     content: url(https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134);
-   }
-    
+  img {
+    content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
+    height: 300px;
+    object-fit: cover;
+  
   }
 }
+
 #homepage-episode {
   @include flexbox;
-  .card {
-   img {
-     content: url(https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg);
-   }
-    
+  img {
+    content: url("https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg");
+    height: 300px;
+    object-fit: cover;
+    object-position: bottom;
   }
 }
 
 h3 {
-  color: $color_white;
-  @include null-opacity;
-  margin: 10px;
+  color: $text_color;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .hide-button {

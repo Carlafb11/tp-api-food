@@ -12,45 +12,27 @@ body {
   font-family: "Montserrat";
 }
 
-#cards-container {
-  padding: 0 10% 0 10%;
+#cards-container-results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  margin: 1px;
-  height: 400px;
+  margin: 10px;
+  height: 360px;
   width: 300px;
-  background-color: #46df53;
+  background-color: #FFFFFF;
   overflow: hidden;
+  border-radius: 10px;
+  filter: drop-shadow(10px 10px 15px #d6d6d6);
 }
 .card img {
   transition: 1s;
 }
 .card img:hover {
   transform: scale(1.1);
-}
-.card .layer-card {
-  text-align: center;
-  position: relative;
-  color: #FFFFFF;
-}
-.card .layer-card:hover {
-  background-color: rgba(54, 54, 54, 0.397);
-}
-.card .layer-card p {
-  opacity: 0;
-  transition: opacity 1s;
-  padding: 10px;
-}
-
-.card:hover h3, .card:hover p {
-  font-weight: bold;
-  opacity: 1;
 }
 
 #homepage-character {
@@ -64,8 +46,10 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
-#homepage-location .card img {
-  content: url(https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134);
+#homepage-location img {
+  content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
+  height: 300px;
+  object-fit: cover;
 }
 
 #homepage-episode {
@@ -73,15 +57,17 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
-#homepage-episode .card img {
-  content: url(https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg);
+#homepage-episode img {
+  content: url("https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg");
+  height: 300px;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 h3 {
-  color: #FFFFFF;
-  opacity: 0;
-  transition: opacity 1s;
-  margin: 10px;
+  color: #686868;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .hide-button {

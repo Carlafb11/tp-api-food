@@ -71,7 +71,6 @@ getInfo(true, "episode")
 const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => {
   const seeMoreContainer = document.querySelector(`#see-more-${type}`)
   seeMoreContainer.onclick = () => {
-    const heroImage = document.querySelector("#hero")
     const homepageCharacter = document.querySelector("#homepage-character")
     const homepageLocation = document.querySelector("#homepage-location")
     const homepageEpisode = document.querySelector("#homepage-episode")
@@ -93,13 +92,13 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
       case "location":
         homepageCharacter.style.display = "none"  
         homepageEpisode.style.display = "none"
-        heroImage.style.display = "none"
+        searchForm.style.display = "none"
         returnHomepageButton.classList.toggle("hide-button")
       break
       case "episode":
         homepageCharacter.style.display = "none"  
         homepageLocation.style.display = "none"
-        hero.style.display = "none"
+        searchForm.style.display = "none"
         returnHomepageButton.classList.toggle("hide-button")
       break
     }
@@ -148,12 +147,15 @@ const prevAndNextButtons = (type, wrapperNameParam) => {
 const cardsContainer = document.querySelector("#cards-container")
 // Funcionalidad Barra busqueda y Status
   const searchCharacters = (name, status) => {
-    
-    console.log(cardsContainer)
+    const cardsContainerResults = document.querySelector("#cards-container-results")
+    const cardsContainer = document.querySelector("#cards-container")
+
     fetch (`https://rickandmortyapi.com/api/character/?name=${name.toLowerCase()}&status=${status}`)
     .then(res => res.json())
     .then(data => {
-      fillCards(data.results, "character", "cards-container", cardsContainer)
+      fillCards(data.results, "character", "cards-container-results", cardsContainerResults)
+      cardsContainer.style.display = "none"
+      prevAndNextButtons()
     })
   }
 
