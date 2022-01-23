@@ -231,4 +231,10 @@ h3 {
   cursor: not-allowed !important;
 }
 
+@media (min-device-width: 400px) and (max-width: 700px) {
+  .modal-character-container {
+    background-color: red;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
