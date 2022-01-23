@@ -49,12 +49,12 @@ ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillH
   }
 }
 
-const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomepageParam) => {
+const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomepageParam, isSeeMore) => {
   let htmlHolder = ""
   data.map((item) => {
     htmlHolder += `
       <div id="${wrapperNameParam}">
-        <div class="card" id="${type}-${item.id}" data-id="${item.id}" onclick="cardOnClick('${item.id}', '${type}', '${isHomepageParam}')">
+        <div class="card" id="${type}-${item.id}" data-id="${item.id}" onclick="cardOnClick('${item.id}', '${type}', '${isHomepageParam}', '${isSeeMore}')">
           <div class="card-image-wrapper">
             <img src="${item.image}"/>
           </div>
@@ -88,7 +88,7 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
     const homepageEpisode = document.querySelector("#homepage-episode")
     
 
-    fillCards(data, type, wrapperNameParam, fillHomepageCardsParam, false)
+    fillCards(data, type, wrapperNameParam, fillHomepageCardsParam, false, true)
     prevAndNextButtons(type, wrapperNameParam)
     switch(type) {
       case "character":
@@ -201,17 +201,17 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
   }
 
 // OPEN INFO CARD FUNCTION
-const cardOnClick = (id, type, isHomepage) => {
+const cardOnClick = (id, type, isHomepage, isSeeMore) => {
     fetch (`https://rickandmortyapi.com/api/character/${id}`)
     .then (res => res.json())
     .then(data => {
       if (type === "character") {
-        createInfoCard(data, isHomepage)
+        createInfoCard(data, isHomepage, isSeeMore)
         modalStyling(data)
       }
     })
 }
-const createInfoCard = (data, isHomepage) => {
+const createInfoCard = (data, isHomepage, isSeeMore) => {
   cardsContainer.style.display = "none"
   modalCharacterInfo.classList.remove("hidden")
   footerSection.classList.add("hidden")
@@ -245,7 +245,7 @@ const createInfoCard = (data, isHomepage) => {
   // CLOSE INFOCARD FUNCTION
   closeModalButton.onclick =() => {
     overlay.classList.add("hidden")
-    if (isHomepage == 'true') {
+    if (isHomepage == 'true' || isSeeMore == 'true') {
       cardsContainer.style.display = "block"
     } 
     modalCharacterInfo.classList.add("hidden")
@@ -275,7 +275,6 @@ const modalStyling = (data) => {
   else if (data.status === "unknown") {
     status.style.color = "lightseagreen"
   }
-  //specie
   if (data.species === "Human") {
     specie.classList.add("human")
   }
