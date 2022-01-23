@@ -4,11 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://www.pngall.com/wp-content/uploads/4/Rick-And-Morty-PNG-Free-Image.png" type="image/png">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <title>Proyecto</title>
+  <title>API Rick and Morty</title>
 </head>
 <body>
+
+  <nav>
+    <div class="logo">
+      <a href="#"><img src="./assets/logo_nav.png" alt=""></a>
+    </div>
+  </nav>
 
   <div id="hero">
     <form id="search-form">
@@ -51,9 +58,14 @@
       
     </div>
   </div>
-  <div id="cards-container-results">
-      <div id="prevNextWrapper"></div>
+  <div class="cards-container-results" id="cards-container-results">
+    
   </div>
+
+  <div class="buttons-wrapper">
+    <button id="return-homepage" class="hide-button">Return to homepage</button>
+  </div>
+
   <div class="overlay hidden" id="overlay"></div>
 
   <section id="modal-character-container" class="modal-character-container hidden">
