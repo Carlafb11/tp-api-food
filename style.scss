@@ -152,7 +152,7 @@ body {
 #homepage-episode {
   @include flexbox;
   img {
-    content: url("https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg");
+    background-image: url(images/Screenshot_2015-10-05_at_1.19.14_PM.png);
     height: 300px;
     object-fit: cover;
     object-position: bottom;
