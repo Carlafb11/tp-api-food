@@ -141,7 +141,7 @@ body {
 #homepage-location {
   @include flexbox;
   img {
-    content: url("https://static.wikia.nocookie.net/rickandmorty/images/c/c4/Screenshot_2015-10-05_at_1.19.14_PM.png/revision/latest?cb=20151005172134");
+    content: url("https://static.wikia.nocookie.net/rickandmorty/images/e/e1/S1e10_hideout_planet.png/revision/latest?cb=20160911012541");
     height: 300px;
     object-fit: cover;
    
@@ -152,7 +152,7 @@ body {
 #homepage-episode {
   @include flexbox;
   img {
-    background-image: url(images/Screenshot_2015-10-05_at_1.19.14_PM.png);
+    content: url(https://static.posters.cz/image/750/posters/rick-morty-group-i35957.jpg);
     height: 300px;
     object-fit: cover;
     object-position: bottom;
