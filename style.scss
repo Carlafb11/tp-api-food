@@ -1,15 +1,17 @@
 // Font styles
-
+// es mejor importar en html, ya que es mas rapido
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600&display=swap');
 
 
-// >>   mixins
+// >>   mixins --> estas son variables, no mixins
 $color_white: #FFFFFF;
 $modal_text_color: #4C4B63;
 $main_color: #3db2c9;
 $text_color: #686868;
 
-
+// esta medio desordenado este css, idealmente van a tener un archivo para variables, otro para mixin, 
+// y otros para componentes
+// pero si lo van a poner todo en el mismo archivo, primero variables, luego mixins, luego componentes
 nav {
   height: 80px;
   background-color: $main_color;

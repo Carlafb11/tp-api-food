@@ -1,6 +1,7 @@
 // Selectores
 const textInput =document.querySelector("#text-input")
 const searchForm = document.querySelector("#search-form")
+// esta variable nunca se usa
 const searchBarButton = document.querySelector("#button-submit-search")
 const statusSelect = document.querySelector("#select-search")
 const modalCharacterInfo = document.querySelector(".modal-character-container")
@@ -42,8 +43,10 @@ const getInfo = (isHomePage, type) => {
 
 }
 
+// ojo!! falta un const aca!!
 ifIsHomepageFillCards = (isHomepageParam, newData, type, wrapperNameParam, fillHomepageCardsParam) => {
   if (isHomepageParam) {
+    // muy bien resuelto esto
     itemsHomepage = newData.slice(0,4)
     fillCards(itemsHomepage, type, wrapperNameParam, fillHomepageCardsParam, isHomepageParam)
   }
@@ -76,6 +79,8 @@ const fillCards = (data, type, wrapperNameParam, fillHomepageCardsParam, isHomep
   fillHomepageCardsParam.innerHTML = htmlHolder
 }
 
+  // Todo el codigo que se ejecuta apenas carga la pagina, ponganlo al final de todo
+  // Asi es mas facil entender el flujo de ejecución
 getInfo(true, "character")
 getInfo(true, "location")
 getInfo(true, "episode")
@@ -91,6 +96,7 @@ const seeMoreButton = (data, type, wrapperNameParam, fillHomepageCardsParam) => 
     fillCards(data, type, wrapperNameParam, fillHomepageCardsParam, false, true)
     prevAndNextButtons(type, wrapperNameParam)
     switch(type) {
+      // perfecto este switch
       case "character":
         homepageLocation.style.display = "none"  
         homepageEpisode.style.display = "none"
@@ -116,7 +122,8 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
   const wrapper = document.querySelector(`#${wrapperNameParam}`)
   const prevNextWrapper = document.createElement('div')
 
-  let prevButtons, nextButtons
+  // para que declaran esto aca si lo rellenan unas lineas mas abajo? mejor declararlo y darle valor en la misma linea 
+  let prevButtons, nextButtons;
   prevNextWrapper.setAttribute("id", "prev-next-wrapper")
   prevNextWrapper.setAttribute("class", "buttons-wrapper")
   prevNextWrapper.innerHTML = `
@@ -124,6 +131,15 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
       <button id="next-${type}">Next</button>
   `
   wrapper.appendChild(prevNextWrapper)
+
+  // Un bug muy especifico, pero importante, en su pagina. 
+  // 1. Voy a la  pagina de personajes
+  // 2. Voy a la pagina 2
+  // 3. Hago una busqueda, como "rick"
+  // 3. Hago click en proxima pagina... no pasa nada
+  // Por qué? Porque los siguientes selectores no estan agarrando los botones de la busqueda, 
+  // sino los de la pagina de personajes que quedaron mas arriba (ocultos con display none).
+  // Revisen la logica del type para darle id a estos botones, porque no esta funcionando bien 
   prevButtons = document.getElementById(`prev-${type}`)
   nextButtons = document.getElementById(`next-${type}`)
 
@@ -131,8 +147,8 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
     nextButtons.disabled = true
     nextButtons.classList.add("disabled-cta")
   }
-
   nextButtons.onclick = () => {
+    console.log(isSearch)
     if (isSearch) {
       searchPage++
       if (searchPage > 1) {
@@ -141,6 +157,7 @@ const prevAndNextButtons = (type, wrapperNameParam, isSearch, name, status) => {
       searchCharacters(name, status, searchPage)
     } else {
       currentPage++
+      console.log(currentPage)
       if (currentPage > 1) {
         prevButtons.disabled = false
       }
@@ -216,6 +233,7 @@ const createInfoCard = (data, isHomepage, isSeeMore) => {
   modalCharacterInfo.classList.remove("hidden")
   footerSection.classList.add("hidden")
   overlay.classList.remove("hidden")
+  // falta un const aca 
   modalInformationCharacter = document.querySelector(".modal-information")
   modalInformationCharacter. innerHTML = `
   <div class="name">
@@ -245,6 +263,10 @@ const createInfoCard = (data, isHomepage, isSeeMore) => {
   // CLOSE INFOCARD FUNCTION
   closeModalButton.onclick =() => {
     overlay.classList.add("hidden")
+    // isHomepage y isSeeMore deberian ser booleanos, no strings 
+    // el problema es que en esta linea: <div class="card" id="${type}-${item.id}" data-id="${item.id}" onclick="cardOnClick('${item.id}', '${type}', '${isHomepageParam}', '${isSeeMore}')">
+    //   lo convierten en string
+    
     if (isHomepage == 'true' || isSeeMore == 'true') {
       cardsContainer.style.display = "block"
     } 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<!-- la web esta en ingles, el lang debe ser "en" -->
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- el archivo debe llamarse favicon.ico y estar en la carpeta principal -->
   <link rel="icon" href="https://www.pngall.com/wp-content/uploads/4/Rick-And-Morty-PNG-Free-Image.png" type="image/png">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -13,6 +15,7 @@
 
   <nav>
     <div class="logo">
+      <!-- nunca dejen un alt vacio a menos que sea una imagen puramente decorativa (un borde, etc) -->
       <a href="https://carlafb11.github.io/tp-api-rick-and-morty/"><img src="./assets/logo_nav.png" alt=""></a>
     </div>
   </nav>
@@ -20,6 +23,7 @@
   <div id="hero">
     <form id="search-form">
         <div id="search-text-input">
+          <!-- si el input no tiene label, debe tener aria-label -->
           <input 
                 type="text" 
                 id="text-input" 
@@ -28,16 +32,19 @@
         </div>
   
         <div class="select-header">
+          <!-- Falta label o aria-label -->
           <select id ="select-search"> 
             <option disabled>Status</option>
             <option value="Alive">Alive</option>
             <option value="Dead">Dead</option>
             <option value ="Unknow">Unknow</option>
+            <!-- deberia ser: value="all" selected> -->
             <option value selected="all">All</option>
           </select>
           
         </div>
         <div>
+          <!-- idealmente esto seria un input de tipo submit -->
           <button id="button-submit-search">Search</button>
         </div>
 
@@ -65,6 +72,7 @@
   </div>
 
     <div class="buttons-wrapper">
+      <!-- el id tiene que ser unico, este está duplicado -->
       <button id="return-homepage" class="hide-button">Return to homepage</button>
     </div>
     
